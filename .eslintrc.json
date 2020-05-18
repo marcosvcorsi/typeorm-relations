@@ -27,6 +27,8 @@
         "argsIgnorePattern": "_"
       }
     ],
+    "no-restricted-syntax": "off",
+    "no-await-in-loop": "off",
     "no-useless-constructor": "off",
     "@typescript-eslint/interface-name-prefix": [
       "error",
