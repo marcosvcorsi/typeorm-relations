@@ -39,7 +39,7 @@ class CreateProductService {
 
     const productsList = await this.productsRepository.findAllById(products);
 
-    if (productsList.length !== products.length) {
+    if (productsList.length === 0) {
       throw new AppError('Invalid products');
     }
 
@@ -47,7 +47,11 @@ class CreateProductService {
       const findProduct = productsList.find(item => item.id === product.id);
       const price = findProduct?.price || 0;
 
-      if (findProduct && findProduct.quantity < product.quantity) {
+      if (!findProduct) {
+        throw new AppError('Product not found');
+      }
+
+      if (findProduct.quantity < product.quantity) {
         throw new AppError('Product with invalid quatity');
       }
 
